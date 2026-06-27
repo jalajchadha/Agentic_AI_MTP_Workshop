@@ -9,10 +9,10 @@ from AgentWithFunctionCall import AgentWithFunctionCall
 
 # Get the Azure OpenAI token using Managed Identity
 credential = AzureCliCredential()
-token = credential.get_token("https://cognitiveservices.azure.com/.default").token
+token = os.environ.get("AZURE_OPENAI_API_KEY", "")
 
 # Azure OpenAI Configuration
-AZURE_OPENAI_ENDPOINT = "<REPLACE_WITH_YOUR_ENDPOINT>"
+AZURE_OPENAI_ENDPOINT = "https://azureopenaijc.openai.azure.com/"
 DEPLOYMENT_NAME = "gpt-4o"  # Your Azure OpenAI deployment name
 
 # Define the AI Agent using AutoGen
@@ -26,9 +26,9 @@ config_list = [
     }
 ]
 
-# response = OpenAIChatAgentDemo(config_list).runUserGoal("What is the capital of India?")
-# response = OpenAIAgentWithUserProxy(config_list).runUserGoal("What is Autogen?")
-# response = MiddlewareAgentDemo(config_list).runUserGoal("What is threat hunting?")
+#response = OpenAIChatAgentDemo(config_list).runUserGoal("What is the capital of India?")
+#response = OpenAIAgentWithUserProxy(config_list).runUserGoal("What is Autogen?")
+#response = MiddlewareAgentDemo(config_list).runUserGoal("What is threat hunting?")
 response = AgentWithFunctionCall(config_list).runUserGoal()
 print(response)
 
