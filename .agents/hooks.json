@@ -1,0 +1,28 @@
+﻿{
+  "scout-routing": {
+    "PreToolUse": [
+      {
+        "matcher": "grep_search|find_by_name",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"F:\\Study\\Repos\\Homelab\\scripts\\scout-agy-hook.ps1\" -Event PreToolUse",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreInvocation": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"F:\\Study\\Repos\\Homelab\\scripts\\scout-agy-hook.ps1\" -Event PreInvocation",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
+
